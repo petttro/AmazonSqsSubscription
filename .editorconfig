@@ -1,0 +1,40 @@
+root = true
+
+# All files
+[*]
+
+#### Core EditorConfig Options ####
+
+charset = utf-8
+trim_trailing_whitespace = true
+max_line_length = 160
+
+# Indentation and spacing
+indent_style = space
+indent_size = 4
+
+# New line preferences
+insert_final_newline = true
+
+#### Naming styles ####
+
+# Naming rules
+
+dotnet_naming_rule.private_or_internal_static_field_should_be_begins_with__.severity = suggestion
+dotnet_naming_rule.private_or_internal_static_field_should_be_begins_with__.symbols = private_or_internal_static_field
+dotnet_naming_rule.private_or_internal_static_field_should_be_begins_with__.style = begins_with__
+
+dotnet_diagnostic.SA1306.severity = none # FieldNamesMustBeginWithLowerCaseLetter
+
+# Symbol specifications
+
+dotnet_naming_symbols.private_or_internal_static_field.applicable_kinds = field
+dotnet_naming_symbols.private_or_internal_static_field.applicable_accessibilities = internal, private, private_protected
+dotnet_naming_symbols.private_or_internal_static_field.required_modifiers = static
+
+# Naming styles
+
+dotnet_naming_style.begins_with__.required_prefix = _
+dotnet_naming_style.begins_with__.required_suffix =
+dotnet_naming_style.begins_with__.word_separator =
+dotnet_naming_style.begins_with__.capitalization = camel_case

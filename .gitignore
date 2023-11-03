@@ -1,0 +1,13 @@
+# dotnet
+obj/
+bin/
+
+# IDEs
+*.user
+*.suo
+*.sln.docstates
+*.DotSettings
+.vscode/
+.idea/
+.vs/
+launchSettings.json
