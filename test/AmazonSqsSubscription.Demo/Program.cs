@@ -1,10 +1,6 @@
 using System.Net;
-using NLog;
-using NLog.Extensions.Logging;
-using NLog.Web;
 using Package.Demo.Extensions;
 using AmazonSqsSubscription;
-using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace Package.Demo;
 
@@ -21,17 +17,10 @@ public class Program
             {
                 builder
                     .AddEnvironmentVariables()
-                    .AddJsonFile("appsettings.json")
                     .AddJsonFile("appsettings.package.json");
 
             })
             .UseStartup<Startup>()
-            .ConfigureLogging((context, builder) =>
-            {
-                builder.SetMinimumLevel(LogLevel.Trace);
-                LogManager.Configuration = new NLogLoggingConfiguration(context.Configuration.GetSection("NLog"));
-            })
-            .UseNLog()
             .Build();
 
         await SendTestMessageToSqsAsync(host.Services);
@@ -58,12 +47,5 @@ public class Program
         };
 
         await sqsClient.WriteAsync("petr-sqs-test", message, attributes);
-    }
-
-    private static ILoggerFactory GetFactory()
-    {
-        var factory = new LoggerFactory();
-        factory.AddNLog();
-        return factory;
     }
 }
